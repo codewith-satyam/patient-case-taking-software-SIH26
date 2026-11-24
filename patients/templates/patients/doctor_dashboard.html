@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Doctor Dashboard</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'patients/css/doctor.css' %}">
+</head>
+
+<body>
+
+    <h1>Doctor Dashboard</h1>
+
+  <div class="dashboard-stats">
+
+    <div class="dashboard-card">
+        <h3>Total Registered Doctors</h3>
+        <p>{{ total_doctors }}</p>
+    </div>
+
+    <div class="dashboard-card">
+        <h3>Total Specializations</h3>
+        <p>{{ total_specializations }}</p>
+    </div>
+
+    <div class="dashboard-card">
+        <h3>Latest Registered Doctor</h3>
+        {% if latest_doctor %}
+            <p class="latest-doctor-name">{{ latest_doctor.name }}</p>
+        {% else %}
+            <p>None</p>
+        {% endif %}
+    </div>
+
+</div>
+
+    <a href="{% url 'register_doctor' %}" class="add-doctor-btn">
+        + Add New Doctor
+    </a>
+
+    <hr>
+
+    <h2>Registered Doctors</h2>
+    <p>Manage and view all registered doctors.</p>
+    <br>
+   
+<div class="doctor-filter-container">
+
+    <!-- Search Form -->
+    <form method="GET" class="doctor-search-form">
+        <input
+            type="text"
+            name="search"
+            placeholder="Search doctor by name or specialization..."
+            value="{{ search_query }}"
+        >
+        <button type="submit">Search</button>
+    </form>
+
+    <!-- Specialization Filter -->
+    <form method="GET" class="doctor-filter-form">
+        <select name="specialization">
+            <option value="">All Specializations</option>
+
+            {% for specialization in specializations %}
+                <option value="{{ specialization }}"
+                    {% if selected_specialization == specialization %}selected{% endif %}>
+                    {{ specialization }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Filter</button>
+    </form>
+    <a href="{% url 'doctor_dashboard' %}" class="clear-filter-btn">
+    Clear Filters
+</a>
+
+</div>
+
+
+    {% if doctors %}
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Specialization</th>
+                <th>Mobile</th>
+                <th>Email</th>
+                <th>Availability</th>
+                <th>Action</th>
+            </tr>
+
+            {% for doctor in doctors %}
+            <tr>
+                <td>
+                    <a href="{% url 'doctor_detail' doctor.id %}">
+                        {{ doctor.name }}
+                    </a>
+                </td>
+
+                <td>{{ doctor.specialization }}</td>
+                <td>{{ doctor.mobile }}</td>
+                <td>{{ doctor.email }}</td>
+                <td>
+    <span class="availability-badge {{ doctor.availability|slugify }}">
+        {{ doctor.availability }}
+    </span>
+</td>
+
+                <td>
+                    <a href="{% url 'doctor_detail' doctor.id %}">
+                        View Profile
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    {% else %}
+        <p>No doctors registered yet.</p>
+    {% endif %}
+
+</body>
+</html>

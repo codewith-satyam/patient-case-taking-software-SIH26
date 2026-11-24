@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Doctor</title>
+    {% load static %}
+<link rel="stylesheet" href="{% static 'patients/css/doctor.css' %}">
+</head>
+<body>
+
+    <h1>Edit Doctor Details</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label>Doctor Name</label>
+        <input
+            type="text"
+            name="name"
+            value="{{ doctor.name }}"
+            required
+        >
+
+        <br><br>
+
+        <label>Specialization</label>
+        <input
+            type="text"
+            name="specialization"
+            value="{{ doctor.specialization }}"
+            required
+        >
+
+        <br><br>
+
+        <label>Mobile</label>
+        <input
+            type="text"
+            name="mobile"
+            value="{{ doctor.mobile }}"
+            required
+        >
+
+        <br><br>
+
+        <label>Email</label>
+        <input
+            type="email"
+            name="email"
+            value="{{ doctor.email }}"
+            required
+        >
+
+        <label>Availability Status</label>
+
+<select name="availability" required>
+    {% for value, label in doctor.AVAILABILITY_CHOICES %}
+        <option value="{{ value }}"
+            {% if doctor.availability == value %}selected{% endif %}>
+            {{ label }}
+        </option>
+    {% endfor %}
+</select>
+
+        <br><br>
+
+        <button type="submit">Update Doctor</button>
+
+    </form>
+
+</body>
+</html>

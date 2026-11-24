@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Doctor Profile</title>
+    {% load static %}
+<link rel="stylesheet" href="{% static 'patients/css/doctor.css' %}">
+</head>
+<body>
+
+    <a href="{% url 'edit_doctor' doctor.id %}">
+    <button type="button">Edit Doctor</button>
+</a>
+
+<a href="{% url 'delete_doctor' doctor.id %}">
+    <button type="button">Delete Doctor</button>
+</a>
+
+    <h2>{{ doctor.name }}</h2>
+
+    <p>
+        <strong>Specialization:</strong>
+        {{ doctor.specialization }}
+    </p>
+
+    <p>
+        <strong>Mobile:</strong>
+        {{ doctor.mobile }}
+    </p>
+
+    <p>
+        <strong>Email:</strong>
+        {{ doctor.email }}
+    </p>
+    <p>
+    <strong>Availability:</strong>
+
+    <span class="availability-badge {{ doctor.availability|slugify }}">
+        {{ doctor.availability }}
+    </span>
+</p>
+
+
+    <p>
+        <strong>Registered On:</strong>
+        {{ doctor.created_at }}
+    </p>
+
+    <a href="{% url 'doctor_dashboard' %}">
+        Back to Dashboard
+    </a>
+
+</body>
+</html>

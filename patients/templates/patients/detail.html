@@ -1,0 +1,251 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Details</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f3f6fb;
+            color: #263247;
+            padding: 30px 16px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .topbar h1 {
+            font-size: 27px;
+            color: #173b67;
+        }
+
+        .back-btn {
+            text-decoration: none;
+            background: #173b67;
+            color: white;
+            padding: 11px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .profile {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 5px 22px rgba(20, 50, 90, 0.07);
+            margin-bottom: 22px;
+            border: 1px solid #e7edf5;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: #e0edff;
+            color: #173b67;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .profile h2 {
+            font-size: 23px;
+            margin-bottom: 8px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 11px;
+            border-radius: 20px;
+            background: #e5f7ed;
+            color: #18794e;
+            font-size: 12px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            color: #173b67;
+            margin-bottom: 18px;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .detail-item {
+            background: #f7f9fc;
+            padding: 16px;
+            border-radius: 10px;
+            border: 1px solid #edf1f7;
+            overflow-wrap: anywhere;
+        }
+
+        .detail-item span {
+            display: block;
+            color: #778398;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .detail-item strong {
+            font-size: 15px;
+            color: #263247;
+        }
+
+        .complaint {
+            line-height: 1.7;
+            white-space: pre-wrap;
+        }
+
+        .footer {
+            text-align: center;
+            color: #8a95a6;
+            font-size: 12px;
+            margin-top: 25px;
+        }
+
+        @media (max-width: 550px) {
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .topbar h1 {
+                font-size: 23px;
+            }
+
+            .profile {
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        
+<div style="display: flex; gap: 10px; flex-wrap: wrap;">
+    <a href="{% url 'edit_patient' patient.id %}"
+       style="text-decoration: none; background: #16805d;
+              color: white; padding: 11px 16px;
+              border-radius: 8px; font-size: 14px;">
+        ✏️ Edit Patient
+    </a>
+
+    <a href="{% url 'patient_dashboard' %}"
+       class="back-btn">
+        ← Back to Dashboard
+    </a>
+
+<a href="{% url 'delete_patient' patient.id %}"
+   style="text-decoration: none;
+          background: #dc3545;
+          color: white;
+          padding: 11px 16px;
+          border-radius: 8px;
+          font-size: 14px;">
+    🗑️ Delete Patient
+</a>
+
+</div>
+
+
+        <div class="profile">
+            <div class="profile-header">
+                <div class="avatar">
+                    {{ patient.name|first|upper }}
+                </div>
+
+                <div>
+                    <h2>{{ patient.name }}</h2>
+                    <span class="badge">Patient Record</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="profile">
+            <h3 class="section-title">Personal Information</h3>
+
+            <div class="details-grid">
+                <div class="detail-item">
+                    <span>Patient Name</span>
+                    <strong>{{ patient.name }}</strong>
+                </div>
+
+                <div class="detail-item">
+                    <span>Age</span>
+                    <strong>{{ patient.age }} years</strong>
+                </div>
+
+                <div class="detail-item">
+                    <span>Gender</span>
+                    <strong>{{ patient.gender }}</strong>
+                </div>
+
+                <div class="detail-item">
+                    <span>Mobile Number</span>
+                    <strong>{{ patient.mobile }}</strong>
+                </div>
+
+                <div class="detail-item">
+                    <span>Registration Date</span>
+                    <strong>{{ patient.created_at|date:"d M Y, h:i A" }}</strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="profile">
+            <h3 class="section-title">Chief Complaint</h3>
+
+            <div class="detail-item complaint">
+                {{ patient.chief_complaint|default:"No complaint provided." }}
+            </div>
+
+        </div>
+
+<div class="profile">
+    <h3 class="section-title">Medical History</h3>
+
+    <div class="detail-item complaint">
+        {{ patient.medical_history|default:"No medical history provided." }}
+    </div>
+</div>
+
+
+        <p class="footer">
+            Patient Case Taking System · Patient information
+        </p>
+
+    </div>
+</body>
+</html>

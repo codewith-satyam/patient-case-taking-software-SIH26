@@ -1,0 +1,321 @@
+
+/* ===== Global Design ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f3f6fc;
+    color: #243047;
+    padding: 35px;
+}
+
+h1 {
+    color: #173b72;
+    font-size: 30px;
+    margin-bottom: 22px;
+}
+
+h2 {
+    color: #173b72;
+    margin-bottom: 18px;
+}
+
+/* ===== Dashboard Card ===== */
+.dashboard-card {
+    background: linear-gradient(135deg, #1769db, #123d85);
+    color: white;
+    padding: 25px;
+    border-radius: 16px;
+    width: 250px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 22px rgba(23, 105, 219, 0.2);
+}
+
+.dashboard-card h3 {
+    color: white;
+    font-size: 16px;
+}
+
+.dashboard-card p {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+/* ===== Buttons ===== */
+button {
+    background: #1769db;
+    color: white;
+    border: none;
+    padding: 11px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #104b9f;
+    transform: translateY(-2px);
+}
+
+.btn-delete {
+    background: #e5484d;
+}
+
+/* ===== Add Doctor Button ===== */
+.add-doctor-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #1769db, #123d85);
+    color: white;
+    padding: 13px 24px;
+    border-radius: 9px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 15px rgba(23, 105, 219, 0.2);
+    transition: 0.3s;
+}
+
+.add-doctor-btn:hover {
+    background: #104b9f;
+    transform: translateY(-3px);
+    color: white;
+    text-decoration: none;
+}
+
+/* ===== Table ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(30, 60, 100, 0.06);
+}
+
+th {
+    background: #e8f0fc;
+    color: #173b72;
+    text-align: left;
+    padding: 16px;
+}
+
+td {
+    padding: 15px;
+    border-bottom: 1px solid #edf0f5;
+}
+
+tr:hover td {
+    background: #f5f8ff;
+}
+
+/* ===== Forms ===== */
+form {
+    background: white;
+    padding: 28px;
+    border-radius: 14px;
+    max-width: 550px;
+    box-shadow: 0 5px 22px rgba(30, 60, 100, 0.07);
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #425574;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d8e0ed;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #1769db;
+    box-shadow: 0 0 0 3px rgba(23, 105, 219, 0.1);
+}
+
+/* ===== Profile ===== */
+.profile-card {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    max-width: 600px;
+    box-shadow: 0 5px 22px rgba(30, 60, 100, 0.07);
+}
+
+.profile-card p {
+    padding: 14px 0;
+    border-bottom: 1px solid #edf0f5;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 600px) {
+    body {
+        padding: 18px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    th, td {
+        padding: 9px;
+    }
+
+    form {
+        padding: 20px;
+    }
+}
+
+
+/* ===== Doctor Registration Page ===== */
+
+.registration-container {
+    max-width: 650px;
+    margin: 30px auto;
+    padding: 35px;
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 8px 30px rgba(30, 60, 100, 0.10);
+}
+
+.registration-container h2 {
+    text-align: center;
+    font-size: 27px;
+    color: #173b72;
+    margin-bottom: 30px;
+    padding-bottom: 18px;
+    border-bottom: 2px solid #e8f0fc;
+}
+
+.registration-container form {
+    max-width: 100%;
+    box-shadow: none;
+    padding: 0;
+}
+
+.registration-container input {
+    width: 100%;
+    margin-bottom: 22px;
+}
+
+.registration-container button {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+/* ===== Doctor Search and Filter Layout ===== */
+
+.doctor-filter-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.doctor-search-form,
+.doctor-filter-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.doctor-search-form {
+    flex: 1;
+    max-width: 550px;
+}
+
+.doctor-search-form input {
+    flex: 1;
+    margin: 0;
+    min-width: 180px;
+}
+
+.doctor-filter-form select {
+    padding: 12px;
+    border: 1px solid #d8e0ed;
+    border-radius: 8px;
+    min-width: 190px;
+    background: white;
+}
+
+.doctor-filter-form button,
+.doctor-search-form button {
+    white-space: nowrap;
+}
+.clear-filter-btn {
+    display: inline-block;
+    background: #e8eef8;
+    color: #173b72;
+    padding: 12px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.clear-filter-btn:hover {
+    background: #d5e2f5;
+    color: #123d85;
+}
+.dashboard-stats {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+
+.dashboard-stats .dashboard-card {
+    flex: 1;
+    min-width: 220px;
+    margin-bottom: 0;
+}
+
+.latest-doctor-name {
+    font-size: 20px !important;
+    margin-top: 8px;
+    word-break: break-word;
+}
+.availability-badge {
+    display: inline-block;
+    padding: 7px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.availability-badge.available {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.availability-badge.not-available {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.availability-badge.on-leave {
+    background: #ffedd5;
+    color: #c2410c;
+}

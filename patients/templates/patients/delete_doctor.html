@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Doctor</title>
+    {% load static %}
+<link rel="stylesheet" href="{% static 'patients/css/doctor.css' %}">
+</head>
+<body>
+
+    <h1>Delete Doctor</h1>
+
+    <p>
+        Are you sure you want to delete
+        <strong>{{ doctor.name }}</strong>?
+    </p>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <button type="submit">Yes, Delete</button>
+    </form>
+
+    <a href="{% url 'doctor_detail' doctor.id %}">
+        Cancel
+    </a>
+
+</body>
+</html>
